@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
+import Hello from './Hello';
 import * as serviceWorker from './serviceWorker';
+import 'tachyons';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    {/* <h1>hello world</h1> */}
+    {/* <App /> */}
+    <Hello message={"to the ReactJS quest"} />
   </React.StrictMode>,
   document.getElementById('root')
 );
