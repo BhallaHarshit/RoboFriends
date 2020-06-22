@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react';
-import SearchBox from './SearchBox';
-import CardList from './CardList';
-import Scroll from './Scroll';
+import SearchBox from '../components/SearchBox';
+import CardList from '../components/CardList';
+import Scroll from '../components/Scroll';
 import './App.css';
 
 class App extends Component {
@@ -30,11 +30,12 @@ class App extends Component {
     }
 
     render() {
-        const filteredRobots = this.state.robots.filter( robot => {
-            return robot.name.toLowerCase().includes(this.state.searchField.toLowerCase())
+        const { robots, searchField } = this.state;
+        const filteredRobots = robots.filter( robot => {
+            return robot.name.toLowerCase().includes(searchField.toLowerCase())
         });
         console.log("in render");
-        if( this.state.robots.length === 0) {
+        if(!robots.length) {
             return(
                 <h1 className="tc">Loading...</h1>
             )
