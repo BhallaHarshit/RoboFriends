@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-const SearchBox = () => {
+const SearchBox = ({ searchChange }) => {
     return(
         <Fragment>
             <form className='pa2'>
@@ -8,6 +8,7 @@ const SearchBox = () => {
                     className='pa3 ba b--green bg-lightest-blue'
                     type="text" 
                     placeholder="search..." 
+                    onChange={searchChange}
                 />
             </form>
         </Fragment>
