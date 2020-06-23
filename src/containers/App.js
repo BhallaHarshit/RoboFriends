@@ -2,6 +2,7 @@ import React, { Fragment, Component } from 'react';
 import SearchBox from '../components/SearchBox';
 import CardList from '../components/CardList';
 import Scroll from '../components/Scroll';
+import ErrorBoundary from '../components/ErrorBoundary'
 import './App.css';
 
 class App extends Component {
@@ -12,11 +13,9 @@ class App extends Component {
             robots: [],
             searchField: '',
         }
-        console.log("in constructor");
     }
 
     componentDidMount() {
-        console.log("in componentDidMount");
         fetch('https://jsonplaceholder.typicode.com/users')
             .then(response => {
                 return response.json()
@@ -35,7 +34,6 @@ class App extends Component {
         const filteredRobots = robots.filter( robot => {
             return robot.name.toLowerCase().includes(searchField.toLowerCase())
         });
-        console.log("in render");
         if(!robots.length) {
             return(
                 <h1 className="tc">Loading...</h1>
@@ -48,7 +46,9 @@ class App extends Component {
                         <h1 className="f1">ROBOFRIENDS</h1>
                         <SearchBox searchChange={ this.onSearchChange }/>
                         <Scroll>
-                            <CardList robots={ filteredRobots } />
+                            <ErrorBoundary>
+                                <CardList robots={ filteredRobots } />
+                            </ErrorBoundary>
                         </Scroll>
                     </div>
                 </Fragment>
